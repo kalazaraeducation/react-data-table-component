@@ -1,48 +1,60 @@
-// import { useQuery } from "@tanstack/react-query";
-// import axios from "axios";
-import { Link } from "react-router-dom";
-import { UserHookData, RandomData } from "../pages/hooks/query-hooks";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import DataTable from "react-data-table-component";
 
 const Contact = () => {
-  const { data, isLoading, isError, error, refetch } = UserHookData();
-  const {
-    data: randomUserData,
-    isLoading: randomLoading,
-    isError: randomError,
-    error: randomErrorMessage,
-    refetch: randomRefetch,
-  } = RandomData();
+  const { data, isLoading, isError, error } = useQuery(
+    ["user-data"],
+    () => axios.get("https://gorest.co.in/public/v1/users"),
+    {
+      select: (res) => res.data,
+    }
+  );
 
-  console.log("data", data && data);
-  console.log("random data", randomUserData && randomUserData);
+  if (isError) return <h1>{error.message}</h1>;
 
-  if (isError && randomError)
-    return (
-      <h1>
-        {error.message}
-        {randomErrorMessage.message}
-      </h1>
-    );
+  if (isLoading) return <h1>Loading...</h1>;
 
-  if (isLoading && randomLoading) return <h1>Loading...</h1>;
+  console.log(data && { data });
+
+  const columns = [
+    {
+      name: "ID",
+      selector: (row) => row.id,
+    },
+    {
+      name: "Name",
+      selector: (row) => row.name,
+    },
+    {
+      name: "Gender",
+      selector: (row) => row.gender,
+    },
+    {
+      name: "Status",
+      selector: (row) => row.status,
+    },
+  ];
+
+  const tableData = data?.data.map((user) => {
+    return {
+      id: user.id,
+      name: user.name,
+      gender: user.gender,
+      status: user.status,
+    };
+  });
 
   return (
     <>
       <h1 className="text-xl">Query - 1</h1>
-      <button onClick={refetch}>Fetch</button>
-      {data?.data.map((item, i) => (
-        <div key={i} className="flex gap-x-2">
-          <p>{item.email}</p>
-          <Link to={`/single-user-data/${item.id}`}>Profile</Link>
-        </div>
-      ))}
-      <h1 className="text-xl">Query - 2</h1>
-      {randomUserData?.data.map((item, i) => (
-        <div key={i} className="flex gap-x-2">
-          <p>{item.email}</p>
-          <Link to={`/single-user-data/${item.id}`}>Profile</Link>
-        </div>
-      ))}
+
+      <DataTable
+        columns={columns}
+        data={tableData}
+        fixedHeader={true}
+        fixedHeaderScrollHeight="300px"
+      />
     </>
   );
 };
