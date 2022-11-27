@@ -13,7 +13,7 @@ const Contact = () => {
 
   if (isError) return <h1>{error.message}</h1>;
 
-  if (isLoading) return <h1>Loading...</h1>;
+  // if (isLoading) return <h1>Loading...</h1>;
 
   console.log(data && { data });
 
@@ -21,18 +21,24 @@ const Contact = () => {
     {
       name: "ID",
       selector: (row) => row.id,
+      sortable: true,
+      id: 2,
     },
     {
       name: "Name",
       selector: (row) => row.name,
+      sortable: true,
+      id: 1,
     },
     {
       name: "Gender",
       selector: (row) => row.gender,
+      id: 3,
     },
     {
       name: "Status",
       selector: (row) => row.status,
+      id: 4,
     },
   ];
 
@@ -52,8 +58,9 @@ const Contact = () => {
       <DataTable
         columns={columns}
         data={tableData}
-        fixedHeader={true}
-        fixedHeaderScrollHeight="300px"
+        progressPending={isLoading}
+        progressComponent={<h1>My Custom Component</h1>}
+        defaultSortFieldId={1}
       />
     </>
   );
