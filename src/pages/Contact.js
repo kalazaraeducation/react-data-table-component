@@ -17,6 +17,23 @@ const Contact = () => {
 
   console.log(data && { data });
 
+  const customSortFunction = (rowA, rowB) => {
+    const a = rowA.name.toLowerCase();
+    const b = rowB.name.toLowerCase();
+
+    console.log({ a, b });
+
+    if (a > b) {
+      return 1;
+    }
+
+    if (b > a) {
+      return -1;
+    }
+
+    return 0;
+  };
+
   const columns = [
     {
       name: "ID",
@@ -28,6 +45,7 @@ const Contact = () => {
       name: "Name",
       selector: (row) => row.name,
       sortable: true,
+      sortFunction: customSortFunction,
       id: 1,
     },
     {
