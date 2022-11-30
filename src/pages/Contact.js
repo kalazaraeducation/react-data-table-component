@@ -81,7 +81,15 @@ const Contact = () => {
   //   console.log({ selectedRows });
   // };
 
-  const disabledCriteria = (row) => {
+  // const disabledCriteria = (row) => {
+  //   if (row.status === "active") {
+  //     return false;
+  //   } else {
+  //     return true;
+  //   }
+  // };
+
+  const selectedCriteria = (row) => {
     if (row.status === "active") {
       return false;
     } else {
@@ -99,7 +107,8 @@ const Contact = () => {
         progressPending={isLoading}
         progressComponent={<h1>My Custom Component</h1>}
         selectableRows
-        selectableRowDisabled={disabledCriteria}
+        selectableRowSelected={selectedCriteria}
+        // selectableRowDisabled={disabledCriteria}
         // onSelectedRowsChange={handleSelected}
         // defaultSortFieldId={1}
         // onSort={handleSort}
