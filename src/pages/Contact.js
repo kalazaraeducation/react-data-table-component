@@ -17,35 +17,43 @@ const Contact = () => {
 
   console.log(data && { data });
 
-  const customSortFunction = (rowA, rowB) => {
-    const a = rowA.name.toLowerCase();
-    const b = rowB.name.toLowerCase();
+  // const customSortFunction = (rowA, rowB) => {
+  //   const a = rowA.name.toLowerCase();
+  //   const b = rowB.name.toLowerCase();
 
-    console.log({ a, b });
+  //   console.log({ a, b });
 
-    if (a > b) {
-      return 1;
-    }
+  //   if (a > b) {
+  //     return 1;
+  //   }
 
-    if (b > a) {
-      return -1;
-    }
+  //   if (b > a) {
+  //     return -1;
+  //   }
 
-    return 0;
-  };
+  //   return 0;
+  // };
+
+  // const handleSort = (column, sortDirection) => {
+  //   console.log({ column, sortDirection });
+  //   /// reach out to some API and get new data using or sortField and sortDirection
+  //   // e.g. https://api.github.com/search/repositories?q=blog&sort=${column.sortField}&order=${sortDirection}
+  // };
 
   const columns = [
     {
       name: "ID",
       selector: (row) => row.id,
       sortable: true,
+      sortField: "id",
       id: 2,
     },
     {
       name: "Name",
       selector: (row) => row.name,
       sortable: true,
-      sortFunction: customSortFunction,
+      sortField: "name",
+      // sortFunction: customSortFunction,
       id: 1,
     },
     {
@@ -69,6 +77,10 @@ const Contact = () => {
     };
   });
 
+  const handleSelected = ({ selectedRows }) => {
+    console.log({ selectedRows });
+  };
+
   return (
     <>
       <h1 className="text-xl">Query - 1</h1>
@@ -78,7 +90,11 @@ const Contact = () => {
         data={tableData}
         progressPending={isLoading}
         progressComponent={<h1>My Custom Component</h1>}
-        defaultSortFieldId={1}
+        selectableRows
+        onSelectedRowsChange={handleSelected}
+        // defaultSortFieldId={1}
+        // onSort={handleSort}
+        // sortServer
       />
     </>
   );
