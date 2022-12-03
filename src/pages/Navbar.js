@@ -12,16 +12,7 @@ const Navbar = () => {
           <NavLink to="/contact">Contact</NavLink>
         </li>
         <li>
-          <NavLink to="/dependent-queries">D-Queries</NavLink>
-        </li>
-        <li>
-          <NavLink to="/paginated-queries">P-Queries</NavLink>
-        </li>
-        <li>
-          <NavLink to="/infinite-queries">I-Queries</NavLink>
-        </li>
-        <li>
-          <NavLink to="/mutation-queries">M-Queries</NavLink>
+          <NavLink to="/expanded-rows">E-Rows</NavLink>
         </li>
       </ul>
     </div>
