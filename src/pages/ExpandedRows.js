@@ -56,6 +56,22 @@ const ExpandedRows = () => {
     <pre>{JSON.stringify(data, null, 2)}</pre>
   );
 
+  // const rowDisabled = (row) => {
+  //   if (row.status === "active") {
+  //     return false;
+  //   } else {
+  //     return true;
+  //   }
+  // };
+
+  const rowExpanded = (row) => {
+    if (row.status === "active") {
+      return false;
+    } else {
+      return true;
+    }
+  };
+
   return (
     <>
       <h1 className="text-xl">Query - 1</h1>
@@ -66,6 +82,8 @@ const ExpandedRows = () => {
         progressComponent={<h1>My Custom Component</h1>}
         expandableRows
         expandableRowsComponent={ExpandedComponent}
+        expandableRowExpanded={rowExpanded}
+        // expandableRowDisabled={rowDisabled}
       />
     </>
   );
