@@ -5,7 +5,7 @@ import DataTable from "react-data-table-component";
 const ExpandedRows = () => {
   const { data, isLoading, isError, error } = useQuery(
     ["user-data"],
-    () => axios.get("https://gorest.co.in/public/v1/users"),
+    () => axios.get("https://gorest.co.in/public/v1/users?page=1&per_page=100"),
     {
       select: (res) => res.data,
     }
@@ -52,9 +52,9 @@ const ExpandedRows = () => {
     };
   });
 
-  const ExpandedComponent = ({ data }) => (
-    <pre>{JSON.stringify(data, null, 2)}</pre>
-  );
+  // const ExpandedComponent = ({ data }) => (
+  //   <pre>{JSON.stringify(data, null, 2)}</pre>
+  // );
 
   // const rowDisabled = (row) => {
   //   if (row.status === "active") {
@@ -64,13 +64,13 @@ const ExpandedRows = () => {
   //   }
   // };
 
-  const rowExpanded = (row) => {
-    if (row.status === "active") {
-      return false;
-    } else {
-      return true;
-    }
-  };
+  // const rowExpanded = (row) => {
+  //   if (row.status === "active") {
+  //     return false;
+  //   } else {
+  //     return true;
+  //   }
+  // };
 
   return (
     <>
@@ -80,9 +80,10 @@ const ExpandedRows = () => {
         data={tableData}
         progressPending={isLoading}
         progressComponent={<h1>My Custom Component</h1>}
-        expandableRows
-        expandableRowsComponent={ExpandedComponent}
-        expandableRowExpanded={rowExpanded}
+        pagination
+        // expandableRows
+        // expandableRowsComponent={ExpandedComponent}
+        // expandableRowExpanded={rowExpanded}
         // expandableRowDisabled={rowDisabled}
       />
     </>
