@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Contact from "./pages/Contact";
 import Navbar from "./pages/Navbar";
 import ExpandedRows from "./pages/ExpandedRows";
+import RemotePagination from "./pages/RemotePagination";
 
 const AppRoutes = () => {
   return (
@@ -13,6 +14,7 @@ const AppRoutes = () => {
         <Route path="/" element={<Home />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/expanded-rows" element={<ExpandedRows />} />
+        <Route path="/remote-pagination" element={<RemotePagination />} />
       </Routes>
     </Router>
   );

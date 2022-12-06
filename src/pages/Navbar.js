@@ -14,6 +14,9 @@ const Navbar = () => {
         <li>
           <NavLink to="/expanded-rows">E-Rows</NavLink>
         </li>
+        <li>
+          <NavLink to="/remote-pagination">R-Pagination</NavLink>
+        </li>
       </ul>
     </div>
   );
