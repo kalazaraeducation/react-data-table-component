@@ -5,6 +5,7 @@ import Contact from "./pages/Contact";
 import Navbar from "./pages/Navbar";
 import ExpandedRows from "./pages/ExpandedRows";
 import RemotePagination from "./pages/RemotePagination";
+import Filtering from "./pages/Filtering";
 
 const AppRoutes = () => {
   return (
@@ -15,6 +16,7 @@ const AppRoutes = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/expanded-rows" element={<ExpandedRows />} />
         <Route path="/remote-pagination" element={<RemotePagination />} />
+        <Route path="/filtering" element={<Filtering />} />
       </Routes>
     </Router>
   );
