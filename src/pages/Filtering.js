@@ -92,6 +92,10 @@ const Filtering = () => {
         progressPending={isLoading}
         progressComponent={<h1>My Custom Component</h1>}
         pagination
+        highlightOnHover
+        pointerOnHover
+        theme={2 === 1 ? "dark" : "default"}
+        // dense
       />
     </>
   );
